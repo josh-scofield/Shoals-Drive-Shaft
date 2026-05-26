@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shoals Drive Shaft — Coming Soon</title>
+  <meta name="description" content="Shoals Drive Shaft — driveline, driveshaft, and powertrain components. Website under construction." />
+
+  <!-- Distinctive type: a strong industrial display face + a clean technical body face -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --steel-0: #0e1013;   /* near-black backdrop */
+      --steel-1: #14181d;
+      --steel-2: #1d232a;
+      --steel-3: #2a323b;
+      --line:    #3a444f;
+      --text:    #e7ebef;
+      --dim:      #97a2ad;
+      --amber:    #e8821e;   /* safety / machine orange */
+      --amber-dk: #b5610f;
+      --weld:     #ffd27a;   /* hot spark highlight */
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Barlow', system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 50% -10%, #1a2027 0%, var(--steel-0) 60%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Subtle diagonal hazard-stripe texture behind everything */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(232, 130, 30, 0.025) 0px,
+        rgba(232, 130, 30, 0.025) 2px,
+        transparent 2px,
+        transparent 22px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Fine machined grid overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    /* ── Top status bar ─────────────────────────────── */
+    .statusbar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 11px 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber);
+      background: rgba(0,0,0,0.35);
+      border-bottom: 1px solid var(--line);
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 10px var(--amber);
+      animation: blink 2.4s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* ── Gear mark ──────────────────────────────────── */
+    .gear {
+      width: 92px; height: 92px;
+      margin-bottom: 30px;
+      animation: spin 18s linear infinite;
+      filter: drop-shadow(0 4px 18px rgba(232,130,30,0.25));
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Wordmark ───────────────────────────────────── */
+    .brand {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 0.92;
+      letter-spacing: 1px;
+    }
+    .brand .line1 {
+      display: block;
+      font-size: clamp(38px, 9vw, 92px);
+      color: var(--text);
+    }
+    .brand .line2 {
+      display: block;
+      font-size: clamp(38px, 9vw, 92px);
+      color: var(--amber);
+      position: relative;
+    }
+    /* machined underline */
+    .rule {
+      width: clamp(180px, 40vw, 340px);
+      height: 3px;
+      margin: 26px auto 22px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+    }
+
+    .tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: clamp(15px, 2.4vw, 20px);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 38px;
+    }
+
+    /* ── Under construction plate ───────────────────── */
+    .plate {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 26px;
+      background: var(--steel-2);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--amber);
+      border-radius: 4px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .plate .barcode { display: flex; gap: 3px; align-items: flex-end; height: 30px; }
+    .plate .barcode span {
+      width: 3px; background: var(--dim); display: block;
+    }
+    .plate .ptext {
+      text-align: left;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .plate .ptext .big {
+      font-size: 21px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--text);
+    }
+    .plate .ptext .small {
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--dim); margin-top: 2px;
+    }
+
+    /* ── What's coming chips ────────────────────────── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 42px;
+      max-width: 560px;
+    }
+    .chip {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding: 8px 15px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: rgba(255,255,255,0.015);
+    }
+    .chip b { color: var(--amber); font-weight: 600; }
+
+    /* ── Footer ─────────────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 22px 24px 30px;
+      border-top: 1px solid var(--line);
+      background: rgba(0,0,0,0.3);
+    }
+    footer .loc {
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 13px;
+      color: var(--dim);
+    }
+    footer .copy {
+      font-size: 12px;
+      color: #5f6b76;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
+    /* Staggered entrance */
+    .fade { opacity: 0; transform: translateY(14px); animation: rise .8s ease forwards; }
+    .d1 { animation-delay: .05s; }
+    .d2 { animation-delay: .20s; }
+    .d3 { animation-delay: .35s; }
+    .d4 { animation-delay: .50s; }
+    .d5 { animation-delay: .65s; }
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gear, .dot { animation: none; }
+      .fade { opacity: 1; transform: none; animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="statusbar">
+    <span class="dot"></span>
+    Site Under Construction &nbsp;·&nbsp; Check Back Soon
+  </div>
+
+  <main class="wrap">
+
+    <!-- Rotating gear mark -->
+    <svg class="gear fade d1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#e8821e" stroke-width="3">
+        <circle cx="50" cy="50" r="20" />
+        <circle cx="50" cy="50" r="7" fill="#e8821e" stroke="none" />
+        <!-- teeth -->
+        <g stroke-width="9" stroke="#e8821e">
+          <line x1="50" y1="6"  x2="50" y2="20" />
+          <line x1="50" y1="80" x2="50" y2="94" />
+          <line x1="6"  y1="50" x2="20" y2="50" />
+          <line x1="80" y1="50" x2="94" y2="50" />
+          <line x1="19" y1="19" x2="29" y2="29" />
+          <line x1="71" y1="71" x2="81" y2="81" />
+          <line x1="81" y1="19" x2="71" y2="29" />
+          <line x1="29" y1="71" x2="19" y2="81" />
+        </g>
+      </g>
+    </svg>
+
+    <h1 class="brand">
+      <span class="line1 fade d2">Shoals</span>
+      <span class="line2 fade d3">Drive Shaft</span>
+    </h1>
+
+    <div class="rule fade d3"></div>
+
+    <p class="tagline fade d3">Driveline &nbsp;·&nbsp; Driveshaft &nbsp;·&nbsp; Powertrain</p>
+
+    <div class="plate fade d4">
+      <div class="barcode" aria-hidden="true">
+        <!-- decorative "part tag" barcode; heights set inline -->
+        <span style="height:30px"></span><span style="height:18px"></span>
+        <span style="height:30px"></span><span style="height:12px"></span>
+        <span style="height:24px"></span><span style="height:30px"></span>
+        <span style="height:10px"></span><span style="height:22px"></span>
+        <span style="height:30px"></span><span style="height:16px"></span>
+        <span style="height:28px"></span>
+      </div>
+      <div class="ptext">
+        <div class="big">Building Something Solid</div>
+        <div class="small">Our new site is in the shop</div>
+      </div>
+    </div>
+
+    <div class="chips fade d5">
+      <span class="chip">Powertrain &nbsp;<b>/</b>&nbsp; Differentials</span>
+      <span class="chip">Driveshafts &nbsp;<b>/</b>&nbsp; Ag · Heavy Diesel · Offroad · Onroad</span>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="loc">Sheffield, Alabama</div>
+    <div class="copy">© 2026 Shoals Drive Shaft. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
