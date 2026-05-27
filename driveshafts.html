@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driveshafts — Shoals Drive Shaft</title>
+  <meta name="description" content="Driveshaft categories: industrial, agricultural, heavy diesel, passenger, and custom. Identify your shaft by photo and dimensions." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --steel-0: #0e1013;
+      --steel-1: #14181d;
+      --steel-2: #1d232a;
+      --steel-3: #2a323b;
+      --line:    #3a444f;
+      --text:    #e7ebef;
+      --dim:     #97a2ad;
+      --amber:   #e8821e;
+      --amber-dk:#b5610f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', system-ui, sans-serif;
+      background: var(--steel-0);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Top navigation (matches home) ──────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(14,16,19,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 22px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo .mark { width: 34px; height: 34px; flex-shrink: 0; }
+    .logo .name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 0.95;
+      font-size: 19px;
+    }
+    .logo .name span { color: var(--amber); display: block; font-size: 13px; letter-spacing: 2px; }
+
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding: 9px 16px;
+      border-radius: 4px;
+      transition: color .18s, background .18s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--steel-2); }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .burger span { width: 26px; height: 2.5px; background: var(--text); border-radius: 2px; }
+
+    /* ── Breadcrumb / page header ───────────────────── */
+    .pagehead {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 38px 22px 8px;
+    }
+    .crumbs {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 16px;
+    }
+    .crumbs a { color: var(--amber); transition: color .15s; }
+    .crumbs a:hover { color: #f2913a; }
+    .crumbs .sep { margin: 0 10px; color: var(--steel-3); }
+
+    .pagehead h1 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: clamp(34px, 5.8vw, 60px);
+      line-height: 1.0;
+      letter-spacing: 0.5px;
+    }
+    .pagehead .lede {
+      max-width: 680px;
+      margin-top: 14px;
+      color: var(--dim);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    /* ── Category grid ──────────────────────────────── */
+    .grid {
+      max-width: 1240px;
+      margin: 30px auto 70px;
+      padding: 0 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 240px;
+      padding: 26px 24px 24px;
+      background: var(--steel-1);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s, background .2s;
+    }
+    .card:hover {
+      border-color: var(--amber);
+      transform: translateY(-3px);
+      background: #181d23;
+    }
+    /* Amber accent band on top-left of every card */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 56px; height: 3px;
+      background: var(--amber);
+    }
+    /* The custom card gets a special treatment */
+    .card.custom { background: linear-gradient(135deg, #1a1612 0%, var(--steel-1) 60%); }
+    .card.custom::before { width: 100%; opacity: .85; }
+
+    .card .num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12.5px;
+      letter-spacing: 3px;
+      color: var(--amber);
+      margin-bottom: 14px;
+    }
+
+    .card .icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+
+    .card h2 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 24px;
+      line-height: 1.0;
+      margin-bottom: 10px;
+    }
+    .card .desc {
+      color: var(--dim);
+      font-size: 14.5px;
+      line-height: 1.5;
+      flex: 1;
+    }
+    .card .more {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .card .more .arr { transition: transform .2s; color: var(--amber); }
+    .card:hover .more .arr { transform: translateX(5px); }
+
+    .card .tag-soon {
+      position: absolute;
+      top: 14px; right: 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding: 3px 8px;
+      border: 1px solid var(--steel-3);
+      border-radius: 3px;
+    }
+
+    /* ── Footer ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--steel-1);
+      padding: 30px 22px;
+      text-align: center;
+    }
+    footer .loc {
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 14px;
+      color: var(--dim);
+    }
+    footer .copy { font-size: 12.5px; color: #5f6b76; margin-top: 8px; }
+
+    /* ── Tablet ─────────────────────────────────────── */
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── Mobile ─────────────────────────────────────── */
+    @media (max-width: 820px) {
+      .burger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 70px; left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--steel-1);
+        border-bottom: 1px solid var(--line);
+        padding: 8px 14px 16px;
+        transform: translateY(-130%);
+        transition: transform .3s ease;
+      }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a {
+        padding: 15px 12px;
+        font-size: 19px;
+        border-bottom: 1px solid var(--steel-3);
+      }
+      .nav-links a:last-child { border-bottom: none; }
+      .pagehead { padding: 28px 22px 4px; }
+    }
+
+    @media (max-width: 620px) {
+      .grid { grid-template-columns: 1fr; }
+      .card { min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV (matches home page) ── -->
+  <header>
+    <div class="nav">
+      <a href="/" class="logo" aria-label="Shoals Drive Shaft home">
+        <svg class="mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="#e8821e">
+            <rect x="43" y="18" width="14" height="64" rx="2"/>
+            <rect x="18" y="43" width="64" height="14" rx="2"/>
+            <rect x="36" y="6"  width="28" height="14" rx="3"/>
+            <rect x="36" y="80" width="28" height="14" rx="3"/>
+            <rect x="6"  y="36" width="14" height="28" rx="3"/>
+            <rect x="80" y="36" width="14" height="28" rx="3"/>
+          </g>
+          <circle cx="50" cy="50" r="8" fill="#0e1013"/>
+        </svg>
+        <div class="name">Shoals<span>Drive Shaft</span></div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="/brands">Brands</a>
+        <a href="/about">About Us</a>
+        <a href="/careers">Careers</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── PAGE HEADER ── -->
+  <section class="pagehead">
+    <div class="crumbs">
+      <a href="/">Home</a><span class="sep">/</span>Driveshafts
+    </div>
+    <h1>Driveshafts</h1>
+    <p class="lede">Pick the category that matches your application. Each section will help you identify your shaft by photo and dimensions, or — for custom builds — get a quote from the shop.</p>
+  </section>
+
+  <!-- ── CATEGORY GRID ── -->
+  <main class="grid">
+
+    <!-- 01 INDUSTRIAL -->
+    <a href="/driveshafts/industrial" class="card">
+      <div class="num">01 — Industrial</div>
+      <svg class="icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="#e8821e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Factory roofline -->
+          <path d="M6 50 V30 l8 -8 v8 l8 -8 v8 l8 -8 v8 l8 -8 v8 h14 V50 Z"/>
+          <!-- Smoke stack -->
+          <rect x="48" y="14" width="6" height="14"/>
+          <!-- Door + windows -->
+          <rect x="22" y="38" width="8" height="12"/>
+          <rect x="36" y="36" width="6" height="5"/>
+          <rect x="46" y="36" width="6" height="5"/>
+        </g>
+      </svg>
+      <h2>Industrial</h2>
+      <div class="desc">Heavy industrial driveline — pumps, conveyors, mills, mixers, and shop machinery. High-torque, high-duty-cycle applications.</div>
+      <div class="more">Identify Yours <span class="arr">→</span></div>
+    </a>
+
+    <!-- 02 AGRICULTURAL -->
+    <a href="/driveshafts/agricultural" class="card">
+      <div class="num">02 — Agricultural</div>
+      <svg class="icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="#e8821e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Tractor body -->
+          <path d="M14 38 h22 v-10 h8 l4 10 h4 v8 H14 Z"/>
+          <!-- Smoke stack -->
+          <rect x="18" y="20" width="4" height="10"/>
+          <!-- Front (small) wheel -->
+          <circle cx="22" cy="48" r="5"/>
+          <circle cx="22" cy="48" r="1.5" fill="#e8821e"/>
+          <!-- Rear (big) wheel -->
+          <circle cx="46" cy="46" r="8"/>
+          <circle cx="46" cy="46" r="2" fill="#e8821e"/>
+        </g>
+      </svg>
+      <h2>Agricultural</h2>
+      <div class="desc">PTO and CV ag driveshafts for tractors, balers, mowers, tillage, and implements. Bondioli, Weasler, Comer, Walterscheid.</div>
+      <div class="more">Identify Yours <span class="arr">→</span></div>
+    </a>
+
+    <!-- 03 HEAVY DIESEL -->
+    <a href="/driveshafts/heavy-diesel" class="card">
+      <div class="num">03 — Heavy Diesel</div>
+      <svg class="icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="#e8821e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Semi cab -->
+          <path d="M6 42 V30 l6 -8 h10 v20 Z"/>
+          <!-- Trailer -->
+          <rect x="24" y="20" width="32" height="22"/>
+          <!-- Wheels -->
+          <circle cx="14" cy="46" r="4"/>
+          <circle cx="30" cy="46" r="4"/>
+          <circle cx="44" cy="46" r="4"/>
+          <circle cx="52" cy="46" r="4"/>
+          <!-- Exhaust stack -->
+          <rect x="18" y="14" width="3" height="8"/>
+        </g>
+      </svg>
+      <h2>Heavy Diesel</h2>
+      <div class="desc">Class 7–8 trucks, dump trucks, and commercial fleet driveshafts. Spicer, Meritor, and OE replacements.</div>
+      <div class="more">Identify Yours <span class="arr">→</span></div>
+    </a>
+
+    <!-- 04 PASSENGER -->
+    <a href="/driveshafts/passenger" class="card">
+      <div class="num">04 — Passenger</div>
+      <svg class="icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="#e8821e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Car body: hood, roof, trunk -->
+          <path d="M4 42 L4 36 L14 26 L26 22 L40 22 L52 30 L60 32 L60 42 Z"/>
+          <!-- Roofline crease -->
+          <path d="M14 26 L22 30 L42 30 L52 30"/>
+          <!-- Door line -->
+          <line x1="32" y1="30" x2="32" y2="42"/>
+          <!-- Wheels -->
+          <circle cx="16" cy="44" r="5" fill="#0e1013"/>
+          <circle cx="16" cy="44" r="2" fill="#e8821e"/>
+          <circle cx="48" cy="44" r="5" fill="#0e1013"/>
+          <circle cx="48" cy="44" r="2" fill="#e8821e"/>
+        </g>
+      </svg>
+      <h2>Passenger</h2>
+      <div class="desc">Cars, light trucks, SUVs, and daily drivers. OE-style and performance driveshafts for street and highway use.</div>
+      <div class="more">Identify Yours <span class="arr">→</span></div>
+    </a>
+
+    <!-- 05 CUSTOM (different flow — quote/build) -->
+    <a href="/driveshafts/custom" class="card custom">
+      <div class="num">05 — Custom Build</div>
+      <svg class="icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="#e8821e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Crossed wrench + screwdriver -->
+          <!-- Wrench (lower-left to upper-right) -->
+          <path d="M10 50 L34 26 a7 7 0 0 0 8 -10 l-6 6 -6 -2 -2 -6 6 -6 a7 7 0 0 0 -10 8 L4 44 Z" fill="#e8821e" stroke="none" opacity=".15"/>
+          <path d="M10 50 L34 26 a7 7 0 0 0 8 -10 l-6 6 -6 -2 -2 -6 6 -6 a7 7 0 0 0 -10 8 L4 44 Z"/>
+          <!-- Screwdriver (upper-left to lower-right) -->
+          <path d="M50 10 L58 18 L34 42 L30 46 L24 40 L28 36 L52 12 Z"/>
+          <line x1="34" y1="42" x2="30" y2="46"/>
+        </g>
+      </svg>
+      <h2>Custom Build</h2>
+      <div class="desc">Lifted trucks, race builds, retrofits, hot rods, or one-offs. Send specs and reference photos — the shop will quote your build.</div>
+      <div class="more">Request a Quote <span class="arr">→</span></div>
+    </a>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="loc">Shoals Drive Shaft · Sheffield, Alabama</div>
+    <div class="copy">© 2026 Shoals Drive Shaft. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const links = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => links.classList.remove('open'))
+    );
+  </script>
+
+</body>
+</html>
