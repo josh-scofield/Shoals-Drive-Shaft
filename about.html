@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Shoals Drive Shaft</title>
+  <meta name="description" content="Shoals Drive Shaft has built and serviced driveline components since 1996, supplying customers throughout the country from Muscle Shoals, Alabama." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --steel-0: #0e1013;
+      --steel-1: #14181d;
+      --steel-2: #1d232a;
+      --steel-3: #2a323b;
+      --line:    #3a444f;
+      --text:    #e7ebef;
+      --dim:     #97a2ad;
+      --amber:   #e8821e;
+      --amber-dk:#b5610f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', system-ui, sans-serif;
+      background: var(--steel-0);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Nav (matches other pages) ──────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(14,16,19,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 22px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo .mark { width: 34px; height: 34px; flex-shrink: 0; }
+    .logo .name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 0.95;
+      font-size: 19px;
+    }
+    .logo .name span { color: var(--amber); display: block; font-size: 13px; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding: 9px 16px;
+      border-radius: 4px;
+      transition: color .18s, background .18s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--steel-2); }
+    .nav-links a.active { color: var(--text); }
+
+    .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+    .burger span { width: 26px; height: 2.5px; background: var(--text); border-radius: 2px; transition: .25s; }
+
+    /* ── Page content ───────────────────────────────── */
+    main {
+      flex: 1;
+      max-width: 920px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 50px 22px 80px;
+    }
+
+    .crumbs {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 16px;
+    }
+    .crumbs a { color: var(--amber); transition: color .15s; }
+    .crumbs a:hover { color: #f2913a; }
+    .crumbs .sep { margin: 0 10px; color: var(--steel-3); }
+
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.0;
+      letter-spacing: 0.5px;
+      margin-bottom: 22px;
+    }
+
+    /* Stat strip */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 26px 0 40px;
+    }
+    .stat {
+      position: relative;
+      background: var(--steel-1);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 18px 18px 16px;
+      overflow: hidden;
+    }
+    .stat::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 38px; height: 3px;
+      background: var(--amber);
+    }
+    .stat .num {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4.6vw, 42px);
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .stat .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    /* Body copy */
+    .prose p {
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .prose p:first-of-type {
+      font-size: 19px;
+      color: var(--text);
+    }
+    .prose .dim { color: var(--dim); }
+    .prose strong { color: var(--text); font-weight: 600; }
+
+    /* Section dividers */
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 22px;
+      letter-spacing: 1px;
+      margin: 40px 0 16px;
+      padding-left: 16px;
+      border-left: 3px solid var(--amber);
+    }
+
+    /* What we do — applications grid */
+    .apps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 18px 0 26px;
+    }
+    .app {
+      padding: 13px 16px;
+      background: var(--steel-1);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--amber);
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .app .desc {
+      display: block;
+      font-family: 'Barlow', system-ui, sans-serif;
+      font-size: 13.5px;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--dim);
+      margin-top: 4px;
+    }
+
+    /* Contact / closing card */
+    .closing {
+      margin-top: 38px;
+      position: relative;
+      background: var(--steel-1);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 28px 28px 26px;
+      overflow: hidden;
+    }
+    .closing::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--amber);
+    }
+    .closing .kicker {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+    .closing h3 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 22px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .closing p {
+      color: var(--dim);
+      font-size: 15.5px;
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+
+    /* ── Footer ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--steel-1);
+      padding: 30px 22px;
+      text-align: center;
+    }
+    footer .loc {
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 14px;
+      color: var(--dim);
+    }
+    footer .copy { font-size: 12.5px; color: #5f6b76; margin-top: 8px; }
+
+    @media (max-width: 820px) {
+      .burger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 70px; left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--steel-1);
+        border-bottom: 1px solid var(--line);
+        padding: 8px 14px 16px;
+        transform: translateY(-130%);
+        transition: transform .3s ease;
+      }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a {
+        padding: 15px 12px;
+        font-size: 19px;
+        border-bottom: 1px solid var(--steel-3);
+      }
+      .nav-links a:last-child { border-bottom: none; }
+      main { padding: 36px 22px 60px; }
+      .stats { grid-template-columns: 1fr; }
+      .apps { grid-template-columns: 1fr; }
+      .closing { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <a href="/" class="logo" aria-label="Shoals Drive Shaft home">
+        <svg class="mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="#e8821e">
+            <rect x="43" y="18" width="14" height="64" rx="2"/>
+            <rect x="18" y="43" width="64" height="14" rx="2"/>
+            <rect x="36" y="6"  width="28" height="14" rx="3"/>
+            <rect x="36" y="80" width="28" height="14" rx="3"/>
+            <rect x="6"  y="36" width="14" height="28" rx="3"/>
+            <rect x="80" y="36" width="14" height="28" rx="3"/>
+          </g>
+          <circle cx="50" cy="50" r="8" fill="#0e1013"/>
+        </svg>
+        <div class="name">Shoals<span>Drive Shaft</span></div>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="/brands">Brands</a>
+        <a href="/about.html" class="active">About Us</a>
+        <a href="/careers.html">Careers</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="crumbs">
+      <a href="/">Home</a><span class="sep">/</span>About Us
+    </div>
+
+    <h1>About Shoals Drive Shaft</h1>
+
+    <!-- Stat strip -->
+    <div class="stats">
+      <div class="stat">
+        <div class="num">1996</div>
+        <div class="label">Year Founded</div>
+      </div>
+      <div class="stat">
+        <div class="num">30<span style="font-size:0.55em;">+ yrs</span></div>
+        <div class="label">In the Driveline Business</div>
+      </div>
+      <div class="stat">
+        <div class="num">50<span style="font-size:0.55em;"> states</span></div>
+        <div class="label">Customers Served</div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="prose">
+      <p>
+        Shoals Drive Shaft has built and serviced driveline components since <strong>1996</strong>, working out of <strong>Muscle Shoals, Alabama</strong>. What started as a local driveshaft shop in the Shoals area has grown into a full driveline operation, supplying customers and fleets across the country &mdash; from family farms and independent garages to industrial plants, trucking outfits, and custom builders.
+      </p>
+      <p>
+        The work is straightforward: build it right, build it once. Every shaft we put together gets balanced and inspected before it leaves the shop, and every part we sell is sourced from suppliers we&rsquo;ve worked with for decades. We don&rsquo;t cut corners on driveline work because the people running these parts &mdash; the farmer pulling a hay rake at midnight, the truck driver heading up a mountain pass, the plant manager who can&rsquo;t afford downtime &mdash; need them to hold up.
+      </p>
+
+      <h2>What We Do</h2>
+      <p class="dim">
+        We supply, repair, and custom-build driveshafts and powertrain components across the major application categories. If it spins between an engine and the wheels, the implement, or the load &mdash; we work on it.
+      </p>
+
+      <div class="apps">
+        <div class="app">Industrial
+          <span class="desc">Pumps, conveyors, mills, mixers, shop machinery.</span>
+        </div>
+        <div class="app">Agricultural
+          <span class="desc">PTO and CV shafts for tractors, balers, mowers, implements.</span>
+        </div>
+        <div class="app">Heavy Diesel
+          <span class="desc">Class 7&ndash;8 trucks, dump trucks, commercial fleets.</span>
+        </div>
+        <div class="app">Passenger
+          <span class="desc">Cars, light trucks, SUVs, OE-style and performance.</span>
+        </div>
+        <div class="app" style="grid-column: 1 / -1;">Custom Builds
+          <span class="desc">Lifted trucks, race builds, retrofits, hot rods, one-offs &mdash; if it doesn&rsquo;t come from a catalog, we build it.</span>
+        </div>
+      </div>
+
+      <h2>How We Work</h2>
+      <p>
+        We&rsquo;re a working shop, not a call center. When you call Shoals Drive Shaft, you&rsquo;re talking to someone who knows what a slip yoke is and can walk you through measuring a shaft over the phone. Walk-ins are welcome, parts get pulled fast, and custom builds are quoted honestly &mdash; with a realistic turnaround, not a promise we can&rsquo;t keep.
+      </p>
+      <p>
+        Most of our business comes from repeat customers and referrals, and we like it that way. It means we get to know our customers&rsquo; equipment, their applications, and their work &mdash; and we get to keep doing what we do best.
+      </p>
+
+      <!-- Closing card -->
+      <div class="closing">
+        <div class="kicker">▸ Get in Touch</div>
+        <h3>Need a driveshaft? Have a question?</h3>
+        <p>Call the shop, stop in, or use the parts identifier to figure out exactly what you need. We&rsquo;re based in Muscle Shoals, Alabama and ship anywhere in the country.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="loc">Shoals Drive Shaft · Muscle Shoals, Alabama</div>
+    <div class="copy">© 2026 Shoals Drive Shaft. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const links = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => links.classList.remove('open'))
+    );
+  </script>
+
+</body>
+</html>
